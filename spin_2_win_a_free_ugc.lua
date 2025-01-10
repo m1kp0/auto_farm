@@ -8,8 +8,8 @@ local plr = game.Players.LocalPlayer
 local l = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/turtle"))()
 local w = l:Window("auto farm")
 
-w:Toggle("auto collect coins", false, function(e)
-    while e do
+w:Button("auto collect coins", function()
+    while true do
         wait(1)
         for i, c in pairs(workspace:GetDescendants()) do
         if c.Name == "Coin" then
