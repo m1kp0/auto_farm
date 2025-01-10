@@ -1,5 +1,7 @@
 --the script needs this
 local ANTI_AFK
+local ACC --> auto collect coins toggle
+local AS --> auto spin toggle
 
 --player
 local plr = game.Players.LocalPlayer
@@ -8,30 +10,32 @@ local plr = game.Players.LocalPlayer
 local l = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/turtle"))()
 local w = l:Window("auto farm")
 
-w:Button("auto collect coins", function()
-    while true do
-        wait(1)
+w:Toggle("auto collect coins", false, function(v)
+    ACC = v
+    repeat
         for i, c in pairs(workspace:GetDescendants()) do
-        if c.Name == "Coin" then
-            c.CFrame = CFrame.new(plr.Character.HumanoidRootPart.Position)
+            if c.Name == "Coin" and ACC then
+                c.CFrame = CFrame.new(plr.Character.HumanoidRootPart.Position)
+            end
         end
-        end
-    end
+        wait(1)
+    until ACC == false
 end)
 
-w:Toggle("auto spin", false, function(e)
-    while e do
-        wait(1)
-        if plr.leaderstats.Spins.Value > 2 then
+w:Toggle("auto spin", false, function(v)
+    AS = v
+    repeat
+        if plr.leaderstats.Spins.Value > 2 and AS then
             game:GetService"ReplicatedStorage".ReplicatedEvents.ClaimDailySpin:FireServer()
         else
             warn"not spinned because spins < 2"
         end
-    end
+        wait(1)
+    until AS == false
 end)
 
-w:Toggle("anti afk", false, function(e)
-    if e then
+w:Toggle("anti afk", false, function(v)
+    if v then
         ANTI_AFK = plr.Idled:Connect(function()
             local VU = game:GetService("VirtualUser")
             VU:CaptureController()
@@ -42,4 +46,4 @@ w:Toggle("anti afk", false, function(e)
     end
 end)
 
-w:Label("anti kick/ban enabled")
+w:Label"anti kick/ban enabled"
