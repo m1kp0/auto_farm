@@ -1,16 +1,19 @@
 --the script needs this
-local ANTI_AFK
+local ANTI_AFK --> anti afk function
 local ACC --> auto collect coins toggle
 local AS --> auto spin toggle
 
---player
+--variables
 local plr = game.Players.LocalPlayer
+local gui = game.StarterGui
 
 --lib
 local l = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/turtle"))()
+
+--auto farm window
 local w = l:Window("auto farm")
 
-w:Toggle("auto collect coins", false, function(v)
+w:Toggle("auto collect coins", false, function(v) --> v = value
     ACC = v
     repeat
         for i, c in pairs(workspace:GetDescendants()) do
@@ -28,7 +31,7 @@ w:Toggle("auto spin", false, function(v)
         if plr.leaderstats.Spins.Value > 2 and AS then
             game:GetService"ReplicatedStorage".ReplicatedEvents.ClaimDailySpin:FireServer()
         else
-            warn"not spinned because spins < 2"
+            warn"not spinned cuz spins < or = 2"
         end
         wait(1)
     until AS == false
@@ -46,4 +49,23 @@ w:Toggle("anti afk", false, function(v)
     end
 end)
 
-w:Label"anti kick/ban enabled"
+w:Label("anti kick/ban enabled")
+
+--settings window
+local w2 = l:Window("settings")
+
+w2:Button("day", function()
+    game.Lighting.ClockTime = 10
+end)
+
+w2:Button("morning", function()
+    game.Lighting.ClockTime = 6
+end)
+
+w2:Button("night", function()
+    game.Lighting.ClockTime = 0
+end)
+
+w2:Button("evening", function()
+    game.Lighting.ClockTime = 18
+end)
