@@ -5,7 +5,6 @@ local AS --> auto spin toggle
 
 --variables
 local plr = game.Players.LocalPlayer
-local gui = game.StarterGui
 
 --lib
 local l = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/turtle"))()
