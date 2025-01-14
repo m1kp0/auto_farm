@@ -68,3 +68,12 @@ end)
 w2:Button("evening", function()
     game.Lighting.ClockTime = 18
 end)
+
+w2:Button("get codes", function()
+    local w3 = l:Window("codes")
+    for i, code in ipairs(plr.CodesFolder:GetChildren()) do
+        w3:Button(code.Name, function()
+            setclipboard(tostring(code.Name))
+        end)
+    end
+end)
