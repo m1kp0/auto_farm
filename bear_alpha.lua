@@ -13,7 +13,7 @@ w:Toggle("auto farm", false, function(e)
         if farm then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(400, 28, -27)
             game.Players.LocalPlayer.Character.Humanoid.WalkToPoint = Vector3.new(408, 28, -27)
-            wait(9)
+            wait(8.5)
         end
     until farm == false
 end)
